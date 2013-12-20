@@ -2,7 +2,7 @@ defmodule Roads do
   def main([filename]) do
     { :ok, bin } = File.read filename
     map = parse_map bin
-    optimal_path map
+    :io.format("~p~n", [optimal_path map])
   end
 
   def parse_map(bin) when is_binary(bin) do
