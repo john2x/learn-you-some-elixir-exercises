@@ -34,21 +34,21 @@ defmodule Kitchen do
   def store(pid, food) do
     pid <- { self(), { :store, food }}
     receive do
-      { _pid, msg } -> msg
+      { ^pid, msg } -> msg
     end
   end
 
   def take(pid, food) do
     pid <- { self(), { :take, food }}
     receive do
-      { _pid, msg } -> msg
+      { ^pid, msg } -> msg
     end
   end
 
   def store2(pid, food) do
     pid <- { self(), { :store, food }}
     receive do
-      { _pid, msg } -> msg
+      { ^pid, msg } -> msg
     after
       3000 -> :timeout
     end
@@ -57,7 +57,7 @@ defmodule Kitchen do
   def take2(pid, food) do
     pid <- { self(), { :take, food }}
     receive do
-      { _pid, msg } -> msg
+      { ^pid, msg } -> msg
     after
       3000 -> :timeout
     end
