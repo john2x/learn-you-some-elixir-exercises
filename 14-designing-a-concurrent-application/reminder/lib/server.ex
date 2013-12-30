@@ -33,7 +33,7 @@ defmodule Reminder.Server do
     receive do
       { ^ref, :ok } ->
         { :ok, ref }
-      { 'DOWN', ^ref, :process, _pid, reason } ->
+      { :DOWN, ^ref, :process, _pid, reason } ->
         { :error, reason }
     after 5000 ->
       { :error, :timeout }
@@ -119,7 +119,7 @@ defmodule Reminder.Server do
 
       :shutdown -> exit :shutdown
 
-      { 'DOWN', ref, :process, _pid, _reason } ->
+      { :DOWN, ref, :process, _pid, _reason } ->
         loop(HashDict.delete(state.clients, ref))
 
       :code_change ->

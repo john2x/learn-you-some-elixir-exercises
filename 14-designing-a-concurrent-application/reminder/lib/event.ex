@@ -19,7 +19,7 @@ defmodule Reminder.Event do
       { ^ref, :ok } ->
         Process.demonitor(ref, [:flush]);
         :ok
-      { 'DOWN', ^ref, :process, ^pid, _reason } ->
+      { :DOWN, ^ref, :process, ^pid, _reason } ->
         :ok
     end
   end
